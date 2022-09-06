@@ -1,0 +1,114 @@
+const db = require("../models");
+
+const Hotels = db.hotels;
+
+//create
+const addHotel = async(req, res) => {
+    if (!req.body.name) {
+        res.status(400).send({
+            message: "Please Insert Hotel name",
+        });
+        return;
+    }
+    const hotelInfo = {
+        name: req.body.name,
+        price: req.body.price,
+        description: req.body.description,
+        rating: req.body.rating,
+        address: req.body.address,
+        contact: req.body.contact
+    };
+    try {
+        const product = await Hotels.create(hotelInfo);
+        res.status(200).send(product);
+        console.log(product);
+    } catch (error) {
+        console.log(error);
+    }
+};
+// get all products
+
+const getAllHotels = async(req, res) => {
+    const hotels = await Hotels.findAll({});
+    if (hotels.length === 0) {
+        return res.json({
+            message: "No Hotels found",
+        });
+    }
+    res.status(200).send(hotels);
+};
+
+//get single hotel
+const singleHotel = async(req, res) => {
+    let id = req.params.id;
+    const hotel = await Hotels.findOne({ where: { id: id } });
+
+    res.status(200).send(hotel);
+};
+
+module.exports = {
+    singleHotel,
+    getAllHotels,
+    addHotel
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// const updateProduct = async(req, res) => {
+//     let id = req.params.id;
+//     let product = await Products.update(req.body, { where: { id: id } });
+//     res.status(200).send("Product is updated");
+// };
+
+// const deleteProduct = async(req, res) => {
+//     let id = req.params.id;
+//     const result = await Products.destroy({ where: { id: id } });
+//     res.status(200).send("Product is deleted");
+// };
+// const getAllPublished = async(req, res) => {
+//     const result = await Products.findAll({ where: { published: true } });
+//     //console.log(result);
+//     res.status(200).send(result);
+// };
