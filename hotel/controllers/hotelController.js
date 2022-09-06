@@ -96,19 +96,4 @@ module.exports = {
 
 
 
-// const updateProduct = async(req, res) => {
-//     let id = req.params.id;
-//     let product = await Products.update(req.body, { where: { id: id } });
-//     res.status(200).send("Product is updated");
-// };
 
-// const deleteProduct = async(req, res) => {
-//     let id = req.params.id;
-//     const result = await Products.destroy({ where: { id: id } });
-//     res.status(200).send("Product is deleted");
-// };
-// const getAllPublished = async(req, res) => {
-//     const result = await Products.findAll({ where: { published: true } });
-//     //console.log(result);
-//     res.status(200).send(result);
-// };
